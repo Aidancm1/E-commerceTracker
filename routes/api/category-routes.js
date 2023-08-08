@@ -14,9 +14,14 @@ router.get("/", (req, res) => {
         attributes: ["id", "product_name", "price", "stock", "category_id"],
       },
     ],
-  });
+  }).then((dbCategoryData) => {
+    res.json(dbCategoryData);
+    return;
+  }).catch((err) => {
+    res.status(500).json({ message: "No category found with this id!"});
+  })
 });
-//.then
+
 // be sure to include its associated Products
 // });
 
